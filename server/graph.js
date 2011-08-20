@@ -12,16 +12,30 @@
   };
   exports.Graph = Graph = (function() {
     function Graph(size) {
-      var x, y;
+      var x, y, _ref, _ref2;
       this.nodes = [];
-      for (x = 0; 0 <= size ? x < size : x > size; 0 <= size ? x++ : x--) {
+      this.size = size;
+      for (x = 0, _ref = this.size; 0 <= _ref ? x < _ref : x > _ref; 0 <= _ref ? x++ : x--) {
         this.nodes[x] = [];
-        for (y = 0; 0 <= size ? y < size : y > size; 0 <= size ? y++ : y--) {
+        for (y = 0, _ref2 = this.size; 0 <= _ref2 ? y < _ref2 : y > _ref2; 0 <= _ref2 ? y++ : y--) {
           this.nodes[x].push(new GraphNode(x, y, GraphNodeType.OPEN));
         }
       }
       this.nodes;
     }
+    Graph.prototype.set = function(x, y, type, callback) {
+      switch (type) {
+        case 'tower':
+          return this.nodes[x][y].wall();
+      }
+    };
+    Graph.prototype.isInGraph = function(x, y) {
+      if (x >= 0 && x <= this.size && y >= 0 && y <= this.size) {
+        return true;
+      } else {
+        return false;
+      }
+    };
     Graph.prototype.toString = function() {
       var graphString, nodes, row, rowDebug, x, y, _ref, _ref2;
       graphString = '\n';

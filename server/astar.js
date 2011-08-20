@@ -140,7 +140,7 @@
     BinaryHeap.prototype.size = function() {
       return this.content.length;
     };
-    BinaryHeap.prototype.resocreElement = function(node) {
+    BinaryHeap.prototype.rescoreElement = function(node) {
       return this.sinkDown(this.content.indexOf(node));
     };
     BinaryHeap.prototype.sinkDown = function(n) {
