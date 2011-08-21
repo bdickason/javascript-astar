@@ -4,6 +4,8 @@
 #	    Creates a Graph class used in the astar search algorithm.
 #   	Includes Binary Heap (with modifications) from Marijn Haverbeke
 ###
+
+astar = (require './astar').astar
     
 GraphNodeType = { OPEN: 0, WALL: 1, PATH: 8 }
 
@@ -18,6 +20,13 @@ exports.Graph = class Graph
         @nodes[x].push new GraphNode x, y, GraphNodeType.OPEN
     
     @nodes
+
+  # Get a path from one point to another (using astar)
+  path: (x, y, end_x, end_y, callback) ->
+    start = @nodes[x][y]
+    end = @nodes[end_x][end_y]
+    path = astar.search @nodes, start, end
+    callback path    
   
   # Sets an object on a square of the map
   set: (x, y, type, callback) ->

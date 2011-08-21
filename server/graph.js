@@ -4,7 +4,8 @@
   #	
   #	    Creates a Graph class used in the astar search algorithm.
   #   	Includes Binary Heap (with modifications) from Marijn Haverbeke
-  */  var Graph, GraphNode, GraphNodeType;
+  */  var Graph, GraphNode, GraphNodeType, astar;
+  astar = (require('./astar')).astar;
   GraphNodeType = {
     OPEN: 0,
     WALL: 1,
@@ -23,6 +24,13 @@
       }
       this.nodes;
     }
+    Graph.prototype.path = function(x, y, end_x, end_y, callback) {
+      var end, path, start;
+      start = this.nodes[x][y];
+      end = this.nodes[end_x][end_y];
+      path = astar.search(this.nodes, start, end);
+      return callback(path);
+    };
     Graph.prototype.set = function(x, y, type, callback) {
       switch (type) {
         case 'tower':
