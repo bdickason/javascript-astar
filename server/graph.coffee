@@ -28,14 +28,10 @@ exports.Graph = class Graph
     path = astar.search @nodes, start, end
     callback path    
   
-  # Sets an object on a square of the map
-  set: (x, y, type, callback) ->
-    switch type
-      when 'tower'
-        # Towers cannot be walked through
-        @nodes[x][y].wall()
+  # Sets an wall on a square of the map
+  set: (x, y, callback) ->
+    @nodes[x][y].wall()
     
-  
   # Checks if the requested location is actually on the grid
   isInGraph: (x, y) ->
     if x >= 0 and x <= @size and y >= 0 and y <= @size
