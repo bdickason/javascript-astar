@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/bdickason/javascript-astar.png)](http://travis-ci.org/bdickason/javascript-astar)
 # a*star
 
 A* Pathing implementation for NodeJS in Coffeescript
